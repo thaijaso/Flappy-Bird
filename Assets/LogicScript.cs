@@ -8,12 +8,14 @@ public class LogicScript : MonoBehaviour
     public int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
-    public Button button;
+    
+    public Button playAgainButton;
+    public Button quitButton;
 
     void Start()
     {
-        gameOverText.text = "";
-        button.gameObject.SetActive(false);
+        playAgainButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
     }
 
     [ContextMenu("Add Score")]
@@ -25,12 +27,18 @@ public class LogicScript : MonoBehaviour
 
     public void TriggerGameOver()
     {
-        gameOverText.text = "Game Over";
-        button.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
+        playAgainButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
     }
 
     public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

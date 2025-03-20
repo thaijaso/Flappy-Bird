@@ -10,6 +10,8 @@ public class BirdScript : MonoBehaviour
     private int pipeLayer;
     private int outOfBoundsLayer;
 
+    private AudioSource jumpSound;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,7 @@ public class BirdScript : MonoBehaviour
         logicScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         pipeLayer = LayerMask.NameToLayer("Pipe");
         outOfBoundsLayer = LayerMask.NameToLayer("Out Of Bounds");
+        jumpSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class BirdScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isBirdAlive)
         {
             myRigidBody.linearVelocity = Vector2.up * flapStrength;
+            jumpSound.Play();
         }
     }
 
